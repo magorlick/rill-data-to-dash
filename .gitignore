@@ -1,0 +1,6 @@
+# Rill
+*.db
+*.db.tmp
+*.db.wal
+data/*
+**/.DS_Store

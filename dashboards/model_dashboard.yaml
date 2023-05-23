@@ -1,0 +1,93 @@
+# Visit https://docs.rilldata.com/reference/project-files to learn more about Rill project files.
+
+title: "Rill Dashboard Creation - User Journey"
+model: "dashboard_model"
+default_time_range: ""
+smallest_time_grain: ""
+timeseries: "event_time"
+measures:
+  - label: Total records
+    expression: count(DISTINCT id)
+    name: total_records
+    description: Total number of records present
+    format_preset: humanize
+  - label: "Max Scroll Height"
+    expression: "MAX(maxScrollHeight)"
+    name: measure_new
+    description: ""
+    format_preset: humanize
+  - label: "Max Pixel Scroll Depth"
+    expression: "MAX(maxPixelScrollDepth)"
+    name: measure_1_new
+    description: ""
+    format_preset: humanize
+  - label: "Duration (Minutes)"
+    expression: "SUM(duration)/60"
+    name: measure
+    description: ""
+    format_preset: humanize
+  - label: "Cumulative Active in App (5 Min Increments)"
+    expression: "MIN(lifecycle_five_minute)"
+    name: measure_1
+    description: ""
+    format_preset: humanize
+dimensions:
+  - label: "Event Class"
+    property: "eventClass"
+    description: ""
+  - label: Domain
+    property: domain
+    description: ""
+  - label: Page_1
+    property: page_1
+    description: ""
+  - label: Page_2
+    property: page_2
+    description: ""
+  - label: Query_string
+    property: query_string
+    description: ""
+  - label: Title
+    property: title
+    description: ""
+  - label: Subtitle
+    property: subtitle
+  - label: Page_title
+    property: page_title
+    description: ""
+  - label: Article_title
+    property: article_title
+    description: ""
+  - label: EventType
+    property: eventType
+    description: ""
+  - label: Url
+    property: url
+    description: ""
+  - label: TextContent
+    property: textContent
+    description: ""
+  - label: Content
+    property: content
+    description: ""
+  - label: Byline
+    property: byline
+    description: ""
+  - label: OgTitle
+    property: ogTitle
+    description: ""
+  - label: OgDescription
+    property: ogDescription
+    description: ""
+  - label: OgType
+    property: ogType
+    description: ""
+  - label: OgImage
+    property: ogImage
+    description: ""
+  - label: OgURL
+    property: ogURL
+    description: ""
+  - label: "Lifecycle in 5 minute increments"
+    property: "lifecycle_five_minute"
+    description: ""
