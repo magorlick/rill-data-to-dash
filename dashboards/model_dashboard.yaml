@@ -9,58 +9,62 @@ measures:
   - label: Total Events
     expression: count(DISTINCT id)
     name: total_records
-    description: Total number of records present
+    description: Total number of events present in the data (start or stop)
     format_preset: humanize
-  - label: "Max Scroll Height"
-    expression: "MAX(maxScrollHeight)"
-    name: measure_new
-    description: ""
-    format_preset: humanize
-  - label: "Max Pixel Scroll Depth"
-    expression: "MAX(maxPixelScrollDepth)"
-    name: measure_1_new
-    description: ""
-    format_preset: humanize
+
   - label: "Page View Duration (Minutes)"
     expression: "SUM(CASE WHEN eventClass = 'page' THEN duration ELSE NULL END)/60"
     name: measure
-    description: ""
+    description: "The duration of page views (passive or active)"
     format_preset: humanize
   - label: "Attention Duration (Minutes)"
     expression: "SUM(CASE WHEN eventClass = 'attention' THEN duration ELSE NULL END)/60"
     name: measure_1
-    description: ""
+    description: "The duration of attention events within a page (active)"
     format_preset: humanize
+  - label: "Max Pixel Scroll Depth"
+    expression: "MAX(maxPixelScrollDepth)"
+    name: measure_1_new
+    description: "The depth of scrolling in the web app or page."
+    format_preset: humanize
+  - label: "Scroll Percent"
+    expression: "MAX(CAST(maxPixelScrollDepth AS FLOAT))/ MAX(CAST(maxScrollHeight
+      AS FLOAT))"
+    name: measure_2
+    description: "The depth scrolled of the available height (max of each)"
+    format_preset: percentage
 dimensions:
   - label: "Milestones"
     property: "milestones"
-    description: ""
+    description: "Major milestones in the user journey"
   - label: "Browser State"
     property: "browser_state"
-    description: ""
+    description: "Which application was being used with a foucs on the Rill product line"
   - label: "Event Class"
     property: "eventClass"
-    description: "page visits or attention events within a page"
+    description: "page visits (passive or active) or attention events within a page
+      (active)"
   - label: Domain
     property: domain
-    description: ""
+    description: "The domain of the website"
   - label: Page 1
     property: page_1
-    description: ""
+    description: "The first page location in the url"
   - label: Page 2
     property: page_2
-    description: ""
+    description: "The second page location in the url"
   - label: Title
     property: title
-    description: ""
+    description: "The title of the page"
   - label: Subtitle
     property: subtitle
-  - label: Url
+    description: The subtitle of the page
+  - label: URL
     property: url_short
-    description: ""
-  - label: TextContent
+    description: "The URL without the query string"
+  - label: Text Content
     property: textContent
-    description: ""
+    description: "The content of the article, when available."
   - label: Byline
     property: byline
-    description: ""
+    description: "The author(s) of the article, when available."

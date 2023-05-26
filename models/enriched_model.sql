@@ -10,13 +10,10 @@ CASE WHEN SPLIT(eventType, '-')[-1] = 'stop' THEN duration ELSE NULL END AS dura
     ELSE NULL END) OVER(ORDER BY event_datetime) AS install,
   MIN(CASE 
     WHEN str_split(url_split[3], '?')[1] = 'localhost:9009' THEN event_datetime
-    ELSE NULL END) OVER(ORDER BY event_datetime) AS first_run_local,
-  MIN(CASE duration
-    WHEN str_split(url_split[3], '?')[1] = 'localhost:9009' AND str_split(url_split[4], '?')[1]  = 'model' THEN event_datetime
-    ELSE NULL END) OVER(ORDER BY event_datetime) AS first_run_local_model,
-  MIN(CASE 
-    WHEN str_split(url_split[3], '?')[1] = 'localhost:9009' AND str_split(url_split[4], '?')[1]  = 'dashboard' THEN event_datetime
-    ELSE NULL END) OVER(ORDER BY event_datetime) AS first_run_local_dash,
+    ELSE NULL END) OVER(ORDER BY event_datetime) AS first_run_local_example,
+  MIN(CASE
+    WHEN str_split(url_split[3], '?')[1] = 'localhost:9009' AND str_split(url_split[4], '?')[1]  = 'source'  AND str_split(url_split[5], '?')[1]  ILIKE '%articles%' THEN event_datetime
+    ELSE NULL END) OVER (ORDER BY event_datetime) AS first_run_local_my_data,
   MIN(CASE 
     WHEN str_split(url_split[3], '?')[1] = 'ui.rilldata.com' THEN event_datetime
     ELSE NULL END) OVER(ORDER BY event_datetime) AS first_run_cloud,
