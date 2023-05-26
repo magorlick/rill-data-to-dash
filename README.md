@@ -1,5 +1,9 @@
 # Rill +  microfiche
 
+https://github.com/hamilton/microfiche
+https://github.com/rilldata/rill-developer
+
+
 ## Getting started
 
 Make sure that you have installed Rill Developer.

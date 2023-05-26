@@ -1,12 +1,12 @@
 -- @materialize: true
 SELECT 
-  *, 
-  SUM(duration) OVER(ORDER BY event_time)/60/5 AS lifecycle_five_minute,
-  str_split(url_split[3], '?')[1] AS domain,
-  str_split(url_split[4], '?')[1] AS page_1,
-  str_split(url_split[5], '?')[1] AS page_2,
-  SPLIT(eventType, '-')[1] AS eventClass,
-  str_split(url, '?')[2] AS query_string,
-
-FROM unified_model
-ORDER BY pageId, SPLIT(eventType, '-')[1], event_time
+  *,
+  CASE 
+    WHEN event_datetime > first_run_cloud THEN 'shareable cloud dashboard'
+    WHEN event_datetime > first_run_local_dash THEN 'local dashboard preview'
+    WHEN event_datetime > first_run_local_model THEN 'local data transformation'
+    WHEN event_datetime >= start THEN 'awareness and install'
+    ELSE 'other' END AS milestones, 
+    DATE_DIFF('DAY', start, event_datetime) lifecycle_day_number
+  FROM enriched_model
+WHERE event_datetime < '2023-05-25'
