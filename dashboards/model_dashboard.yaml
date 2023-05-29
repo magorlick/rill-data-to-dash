@@ -33,6 +33,11 @@ measures:
     name: measure_2
     description: "The depth scrolled of the available height (max of each)"
     format_preset: percentage
+  - label: "Unique Pages"
+    expression: "COUNT(DISTINCT pageId)"
+    name: measure_3
+    description: "Total number of pages present in the data (start or stop)"
+    format_preset: humanize
 dimensions:
   - label: "Milestones"
     property: "milestones"
