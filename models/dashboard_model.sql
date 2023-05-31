@@ -10,3 +10,4 @@ SELECT
     DATE_DIFF('DAY', start, event_datetime) lifecycle_day_number
   FROM enriched_model
 WHERE event_datetime < '2023-05-25'
+ORDER BY event_datetime

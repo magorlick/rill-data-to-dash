@@ -6,12 +6,6 @@ default_time_range: ""
 smallest_time_grain: "minute"
 timeseries: "event_datetime"
 measures:
-  - label: Total Events
-    expression: count(DISTINCT id)
-    name: total_records
-    description: Total number of events present in the data (start or stop)
-    format_preset: humanize
-
   - label: "Page View Duration (Minutes)"
     expression: "SUM(CASE WHEN eventClass = 'page' THEN duration ELSE NULL END)/60"
     name: measure
@@ -21,6 +15,11 @@ measures:
     expression: "SUM(CASE WHEN eventClass = 'attention' THEN duration ELSE NULL END)/60"
     name: measure_1
     description: "The duration of attention events within a page (active)"
+    format_preset: humanize 
+  - label: Total Events
+    expression: count(DISTINCT id)
+    name: total_records
+    description: Total number of events present in the data (start or stop)
     format_preset: humanize
   - label: "Max Pixel Scroll Depth"
     expression: "MAX(maxPixelScrollDepth)"
