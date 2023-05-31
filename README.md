@@ -25,4 +25,4 @@ rill start https://github.com/magorlick/rill-data-to-dash.git
 
 ## Explore the project in the cloud
 
-_coming soon_
+https://ui.rilldata.com/magorlick/rill-data-to-dash/model_dashboard
